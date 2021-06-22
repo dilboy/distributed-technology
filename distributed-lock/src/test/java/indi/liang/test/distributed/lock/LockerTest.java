@@ -3,6 +3,7 @@ package indi.liang.test.distributed.lock;
 import org.junit.Test;
 
 import indi.liang.distributed.lock.Locker;
+import indi.liang.distributed.lock.redis.RedisLocker;
 import indi.liang.distributed.lock.zk.ZKLocker;
 
 /**
@@ -13,8 +14,14 @@ import indi.liang.distributed.lock.zk.ZKLocker;
 public class LockerTest {
 
     @Test
-    public void testLock() throws Exception {
+    public void testZkLock() throws Exception {
         final Locker locker = new ZKLocker();
+        locker.lock("test");
+    }
+
+    @Test
+    public void testRedisLock() throws Exception {
+        final RedisLocker locker = new RedisLocker();
         locker.lock("test");
     }
 
